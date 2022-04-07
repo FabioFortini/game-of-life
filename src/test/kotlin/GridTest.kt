@@ -13,8 +13,7 @@ class GridTest {
     @Test
     internal fun `grid should return next generation without changes`() {
         val grid = Grid()
-
-        var newGrid = grid.next()
+        val newGrid = grid.next()
 
         assertEquals(grid, newGrid)
     }
