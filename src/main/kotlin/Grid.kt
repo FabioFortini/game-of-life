@@ -1,7 +1,11 @@
 
-class Grid(val rows: Int = 10, val cols: Int = 10) {
+class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, Int>> = emptyList()) {
 
-    val matrix = Array(rows) { Array(cols) { Cell() } }
+    val matrix =  Array(rows) { Array(cols) { Cell() } }
+
+    init {
+        aliveCells.forEach { (x, y) -> matrix[x][y].status = 1 }
+    }
 
     fun next(): Grid {
         return Grid()
@@ -19,6 +23,11 @@ class Grid(val rows: Int = 10, val cols: Int = 10) {
     override fun hashCode(): Int {
         return matrix.contentDeepHashCode()
     }
+
+    fun getCell(rowIndex: Int, colIndex: Int): Cell {
+        return matrix[rowIndex][colIndex]
+    }
+
 
 
 }

@@ -17,4 +17,14 @@ class GridTest {
 
         assertEquals(grid, newGrid)
     }
+
+    @Test
+    fun `initialize grid with different starting status cells`() {
+        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
+
+        assertEquals(1, grid.getCell(0, 0).status)
+        assertEquals(1, grid.getCell(1, 1).status)
+        assertEquals(0, grid.getCell(0, 1).status)
+        assertEquals(0, grid.getCell(1, 0).status)
+    }
 }
