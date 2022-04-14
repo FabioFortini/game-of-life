@@ -8,7 +8,17 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
     }
 
     fun next(): Grid {
-        return Grid()
+       val grid = Grid(rows,cols)
+        matrix.forEachIndexed{index, row->
+            row.forEachIndexed{y,cell ->
+                grid.setStatusCell(index, y, cell.status)
+            }
+        }
+        return grid
+    }
+
+    private fun setStatusCell(x: Int, y: Int, status: Int) {
+        getCell(x,y).status = status
     }
 
     override fun equals(other: Any?): Boolean {
