@@ -39,4 +39,13 @@ class GridTest {
         assertEquals(newGrid.getCell(1, 0).status, grid.getCell(1, 0).status)
         assertEquals(newGrid.getCell(1, 1).status, grid.getCell(1, 1).status)
     }
+
+    @Test
+    fun `grid should represent itself as a string`() {
+        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
+
+        val gridRepresentation = grid.toString()
+
+        assertEquals("*-\n-*\n", gridRepresentation)
+    }
 }

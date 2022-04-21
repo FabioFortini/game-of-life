@@ -39,5 +39,19 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
         return matrix[rowIndex][colIndex]
     }
 
+    override fun toString(): String {
+        var string = ""
+
+        matrix.forEachIndexed { _, row ->
+            row.forEachIndexed { _, cell ->
+                string += if (cell.status == 0) "-" else "*"
+            }
+
+            string += "\n"
+        }
+
+        return string
+    }
+
 
 }
