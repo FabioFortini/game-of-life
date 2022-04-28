@@ -40,6 +40,54 @@ class GridTest {
         assertEquals(newGrid.getCell(1, 1).status, grid.getCell(1, 1).status)
     }
 
+//    @Test
+//    fun `cell should die if no neighbours alive`() {
+//        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0)))
+//
+//        val newGrid = grid.next()
+//
+//        assertEquals(0, newGrid.getCell(0, 0).status)
+//        assertEquals(0, newGrid.getCell(0, 1).status)
+//        assertEquals(0, newGrid.getCell(1, 0).status)
+//        assertEquals(0, newGrid.getCell(1, 1).status)
+//    }
+
+    @Test
+    fun `get how many neighbours alive 0`() {
+        // fare i test anche per i bordi  e gli angoli
+        val grid = Grid(rows = 3, cols = 3)
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(0, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell top left`() {
+        // fare i test anche per i bordi  e gli angoli
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,0)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell top center`() {
+        // fare i test anche per i bordi  e gli angoli
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,1)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell top right`() {
+        // fare i test anche per i bordi  e gli angoli
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,2)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
     @Test
     fun `grid should represent itself as a string`() {
         val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))

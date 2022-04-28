@@ -11,11 +11,16 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
 
         matrix.forEachIndexed { x, row ->
             row.forEachIndexed { y, cell ->
-                grid.setStatusCell(x, y, cell.status)
+                val newStatus = calculateNewStatusCell(x, y, cell.status)
+                grid.setStatusCell(x, y, newStatus)
             }
         }
 
         return grid
+    }
+
+    private fun calculateNewStatusCell(x: Int, y: Int, status: Int): Int {
+        return status
     }
 
     private fun setStatusCell(x: Int, y: Int, status: Int) {
@@ -51,6 +56,19 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
         }
 
         return string
+    }
+
+    fun getNeighboursAlive(x: Int, y: Int): Int {
+        return 0
+//        return getCell(x - 1, y - 1).status +
+//                getCell(x, y - 1).status +
+//                getCell(x + 1, y - 1).status
+//        +
+//                getCell(x - 1, y).status +
+//                getCell(x + 1, y).status +
+//                getCell(x - 1, y + 1).status +
+//                getCell(x, y + 1).status +
+//                getCell(x + 1, y + 1).status
     }
 
 
