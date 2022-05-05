@@ -54,7 +54,6 @@ class GridTest {
 
     @Test
     fun `get how many neighbours alive 0`() {
-        // fare i test anche per i bordi  e gli angoli
         val grid = Grid(rows = 3, cols = 3)
         val aliveNeighbours = grid.getNeighboursAlive(1,1)
 
@@ -63,7 +62,6 @@ class GridTest {
 
     @Test
     fun `find alive cell top left`() {
-        // fare i test anche per i bordi  e gli angoli
         val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,0)))
         val aliveNeighbours = grid.getNeighboursAlive(1,1)
 
@@ -72,7 +70,6 @@ class GridTest {
 
     @Test
     fun `find alive cell top center`() {
-        // fare i test anche per i bordi  e gli angoli
         val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,1)))
         val aliveNeighbours = grid.getNeighboursAlive(1,1)
 
@@ -81,8 +78,47 @@ class GridTest {
 
     @Test
     fun `find alive cell top right`() {
-        // fare i test anche per i bordi  e gli angoli
         val grid = Grid(rows = 3, cols = 3, listOf(Pair(0,2)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell left`() {
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(1,0)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell right`() {
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(1,2)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell bottom left`() {
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(2,0)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell bottom center`() {
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(2,1)))
+        val aliveNeighbours = grid.getNeighboursAlive(1,1)
+
+        assertEquals(1, aliveNeighbours)
+    }
+
+    @Test
+    fun `find alive cell bottom right`() {
+        val grid = Grid(rows = 3, cols = 3, listOf(Pair(2,2)))
         val aliveNeighbours = grid.getNeighboursAlive(1,1)
 
         assertEquals(1, aliveNeighbours)
