@@ -58,14 +58,20 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
         return string
     }
 
+    fun getStatusCell(row: Int, col: Int): Int {
+        if (row < 0 || col < 0)
+            return 0
+        return getCell(row, col).status
+    }
+
     fun getNeighboursAlive(row: Int, col: Int): Int {
-        return getCell(row - 1, col - 1).status +
-                getCell(row - 1, col).status +
-                getCell(row - 1, col + 1).status +
-                getCell(row, col - 1).status +
-                getCell(row, col + 1).status +
-                getCell(row + 1, col - 1).status +
-                getCell(row + 1, col).status +
-                getCell(row + 1, col + 1).status
+        return getStatusCell(row - 1, col - 1) +
+                getStatusCell(row - 1, col) +
+                getStatusCell(row - 1, col + 1) +
+                getStatusCell(row, col - 1) +
+                getStatusCell(row, col + 1) +
+                getStatusCell(row + 1, col - 1) +
+                getStatusCell(row + 1, col) +
+                getStatusCell(row + 1, col + 1)
     }
 }
