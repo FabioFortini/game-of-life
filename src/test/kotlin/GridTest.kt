@@ -131,6 +131,18 @@ class GridTest {
     }
 
     @Test
+    fun `works calculating neighbours starting from top right corner`() {
+        val grid = Grid(rows = 3, cols = 3)
+        grid.getNeighboursAlive(0,2)
+    }
+
+    @Test
+    fun `works calculating neighbours starting from bottom left corner`() {
+        val grid = Grid(rows = 3, cols = 3)
+        grid.getNeighboursAlive(2,0)
+    }
+
+    @Test
     fun `grid should represent itself as a string`() {
         val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
 

@@ -61,6 +61,10 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
     fun getStatusCell(row: Int, col: Int): Int {
         if (row < 0 || col < 0)
             return 0
+        if (col > cols - 1)
+            return 0
+        if (row > rows - 1)
+            return 0
         return getCell(row, col).status
     }
 
