@@ -20,11 +20,12 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
     }
 
     private fun calculateNewStatusCell(row: Int, col: Int, status: Int): Int {
-        if(getNeighboursAlive(row, col) < 2)
+        val aliveNeighbours = getNeighboursAlive(row, col)
+        if(aliveNeighbours < 2)
             return 0
-        if(getNeighboursAlive(row, col) > 3)
+        if(aliveNeighbours > 3)
             return 0
-        if(status == 0 && getNeighboursAlive(row, col) == 3)
+        if(status == 0 && aliveNeighbours == 3)
             return 1
         return status
     }
