@@ -19,7 +19,9 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
         return grid
     }
 
-    private fun calculateNewStatusCell(x: Int, y: Int, status: Int): Int {
+    private fun calculateNewStatusCell(row: Int, col: Int, status: Int): Int {
+        if(getNeighboursAlive(row, col) < 2)
+            return 0
         return status
     }
 

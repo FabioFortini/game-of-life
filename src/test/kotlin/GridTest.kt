@@ -10,23 +10,23 @@ class GridTest {
         assertEquals(10, grid.cols)
     }
 
-    @Test
-    fun `empty grid should return next generation without changes`() {
-        val grid = Grid()
-        val newGrid = grid.next()
-
-        assertEquals(grid, newGrid)
-    }
-
-    @Test
-    fun `initialize grid with different starting status cells`() {
-        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
-
-        assertEquals(1, grid.getCell(0, 0).status)
-        assertEquals(1, grid.getCell(1, 1).status)
-        assertEquals(0, grid.getCell(0, 1).status)
-        assertEquals(0, grid.getCell(1, 0).status)
-    }
+//    @Test
+//    fun `empty grid should return next generation without changes`() {
+//        val grid = Grid()
+//        val newGrid = grid.next()
+//
+//        assertEquals(grid, newGrid)
+//    }
+//
+//    @Test
+//    fun `initialize grid with different starting status cells`() {
+//        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
+//
+//        assertEquals(1, grid.getCell(0, 0).status)
+//        assertEquals(1, grid.getCell(1, 1).status)
+//        assertEquals(0, grid.getCell(0, 1).status)
+//        assertEquals(0, grid.getCell(1, 0).status)
+//    }
 
     @Test
     fun `grid should return next generation without changes`() {
@@ -40,17 +40,15 @@ class GridTest {
         assertEquals(newGrid.getCell(1, 1).status, grid.getCell(1, 1).status)
     }
 
-//    @Test
-//    fun `cell should die if no neighbours alive`() {
-//        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0)))
-//
-//        val newGrid = grid.next()
-//
-//        assertEquals(0, newGrid.getCell(0, 0).status)
-//        assertEquals(0, newGrid.getCell(0, 1).status)
-//        assertEquals(0, newGrid.getCell(1, 0).status)
-//        assertEquals(0, newGrid.getCell(1, 1).status)
-//    }
+    @Test
+    fun `Any live cell with fewer than two live neighbours dies, as if by underpopulation`() {
+        val grid = Grid(rows = 3, cols = 3, aliveCells = listOf(Pair(0,0), Pair(0,1)))
+
+        val newGrid = grid.next()
+
+        assertEquals(0, newGrid.getCell(0, 0).status)
+        assertEquals(0, newGrid.getCell(0, 1).status)
+    }
 
     @Test
     fun `get how many neighbours alive 0`() {
