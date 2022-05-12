@@ -51,6 +51,38 @@ class GridTest {
     }
 
     @Test
+    fun `Any live cell with two live neighbours lives on to the next generation`() {
+        val grid = Grid(rows = 3, cols = 3, aliveCells = listOf(Pair(0,0), Pair(1, 0), Pair(0,1)))
+
+        val newGrid = grid.next()
+
+        assertEquals(1, newGrid.getCell(0, 0).status)
+        assertEquals(1, newGrid.getCell(1, 0).status)
+        assertEquals(1, newGrid.getCell(0, 1).status)
+    }
+
+    @Test
+    fun `Any live cell with three live neighbours lives on to the next generation`() {
+        val grid = Grid(rows = 3, cols = 3, aliveCells = listOf(Pair(0,0), Pair(1, 0), Pair(0,1), Pair(1,1)))
+
+        val newGrid = grid.next()
+
+        assertEquals(1, newGrid.getCell(0, 0).status)
+        assertEquals(1, newGrid.getCell(1, 0).status)
+        assertEquals(1, newGrid.getCell(0, 1).status)
+        assertEquals(1, newGrid.getCell(1, 1).status)
+    }
+
+    @Test
+    fun `Any live cell with more than three live neighbours dies, as if by overpopulation`() {
+        val grid = Grid(rows = 3, cols = 3, aliveCells = listOf(Pair(1,1), Pair(0,1), Pair(1,2), Pair(2,1), Pair(1,0)))
+
+        val newGrid = grid.next()
+
+        assertEquals(0, newGrid.getCell(1, 1).status)
+    }
+
+    @Test
     fun `get how many neighbours alive 0`() {
         val grid = Grid(rows = 3, cols = 3)
         val aliveNeighbours = grid.getNeighboursAlive(1,1)
