@@ -10,34 +10,14 @@ class GridTest {
         assertEquals(10, grid.cols)
     }
 
-//    @Test
-//    fun `empty grid should return next generation without changes`() {
-//        val grid = Grid()
-//        val newGrid = grid.next()
-//
-//        assertEquals(grid, newGrid)
-//    }
-//
-//    @Test
-//    fun `initialize grid with different starting status cells`() {
-//        val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
-//
-//        assertEquals(1, grid.getCell(0, 0).status)
-//        assertEquals(1, grid.getCell(1, 1).status)
-//        assertEquals(0, grid.getCell(0, 1).status)
-//        assertEquals(0, grid.getCell(1, 0).status)
-//    }
-
     @Test
-    fun `grid should return next generation without changes`() {
+    fun `initialize grid with different starting status cells`() {
         val grid = Grid(rows = 2, cols = 2, aliveCells = listOf(Pair(0,0), Pair(1, 1)))
 
-        val newGrid = grid.next()
-
-        assertEquals(newGrid.getCell(0, 0).status, grid.getCell(0, 0).status)
-        assertEquals(newGrid.getCell(0, 1).status, grid.getCell(0, 1).status)
-        assertEquals(newGrid.getCell(1, 0).status, grid.getCell(1, 0).status)
-        assertEquals(newGrid.getCell(1, 1).status, grid.getCell(1, 1).status)
+        assertEquals(1, grid.getCell(0, 0).status)
+        assertEquals(1, grid.getCell(1, 1).status)
+        assertEquals(0, grid.getCell(0, 1).status)
+        assertEquals(0, grid.getCell(1, 0).status)
     }
 
     @Test
@@ -80,6 +60,15 @@ class GridTest {
         val newGrid = grid.next()
 
         assertEquals(0, newGrid.getCell(1, 1).status)
+    }
+
+    @Test
+    fun `Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction`() {
+        val grid = Grid(rows = 3, cols = 3, aliveCells = listOf(Pair(0,1), Pair(1,0), Pair(1,1)))
+
+        val newGrid = grid.next()
+
+        assertEquals(1, newGrid.getCell(0, 0).status)
     }
 
     @Test

@@ -24,6 +24,8 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
             return 0
         if(getNeighboursAlive(row, col) > 3)
             return 0
+        if(status == 0 && getNeighboursAlive(row, col) == 3)
+            return 1
         return status
     }
 
