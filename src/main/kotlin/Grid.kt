@@ -52,14 +52,16 @@ class Grid(val rows: Int = 10, val cols: Int = 10, aliveCells: List<Pair<Int, In
     }
 
     override fun toString(): String {
-        var string = ""
+        var string = "<meta http-equiv=\"refresh\" content=\"0.5\">"
+//        var string = ""
 
         matrix.forEachIndexed { _, row ->
             row.forEachIndexed { _, cell ->
-                string += if (cell.status == 0) "-" else "*"
+                string += if (cell.status == 0) "<div style=\"width:10px;height:10px;display:inline-block\"></div>" else
+                    "<div style=\"width:10px;height:10px;background-color:blue;display:inline-block\"></div>"
             }
 
-            string += "\n"
+            string += "<br>"
         }
 
         return string
